@@ -4,7 +4,6 @@ import {useState} from "react";
 import {Home, Member, Favorites} from "./pages/index.js"
 import {AppContext} from "./context.js"
 
-
 const App = () => {
     const [store, setStore] = useState([])
 
