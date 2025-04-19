@@ -1,0 +1,69 @@
+{
+  "members": [
+    {
+      "id": 1,
+      "firstName": "Анна",
+      "lastName": "Иванова",
+      "age": 22,
+      "about": "Фронтенд-разработчик. Люблю создавать красивые и удобные интерфейсы.",
+      "photo": "https://randomuser.me/api/portraits/women/1.jpg",
+      "socials": {
+        "github": "https://github.com/anna",
+        "telegram": "https://t.me/anna_dev"
+      },
+      "roles": ["Team Lead", "Frontend"],
+      "skills": [
+        { "name": "HTML", "level": 90, "color": "#e34c26" },
+        { "name": "CSS", "level": 85, "color": "#264de4" },
+        { "name": "React", "level": 75, "color": "#61dafb" }
+      ],
+      "portfolio": [
+        "https://via.placeholder.com/300x200?text=Проект+1",
+        "https://via.placeholder.com/300x200?text=Проект+2"
+      ]
+    },
+    {
+      "id": 2,
+      "firstName": "Дмитрий",
+      "lastName": "Петров",
+      "age": 24,
+      "about": "Бэкенд разработчик. Люблю архитектуру и чистый код.",
+      "photo": "https://randomuser.me/api/portraits/men/2.jpg",
+      "socials": {
+        "github": "https://github.com/dmitry",
+        "telegram": "https://t.me/dmitry_code"
+      },
+      "roles": ["Backend"],
+      "skills": [
+        { "name": "Node.js", "level": 80, "color": "#3c873a" },
+        { "name": "Express", "level": 70, "color": "#000" },
+        { "name": "MongoDB", "level": 75, "color": "#4db33d" }
+      ],
+      "portfolio": [
+        "https://via.placeholder.com/300x200?text=API+проект",
+        "https://via.placeholder.com/300x200?text=Сервер+Node"
+      ]
+    },
+    {
+      "id": 3,
+      "firstName": "Екатерина",
+      "lastName": "Смирнова",
+      "age": 21,
+      "about": "UI/UX дизайнер. Обожаю продумывать юзерфлоу и делать приятный UI.",
+      "photo": "https://randomuser.me/api/portraits/women/3.jpg",
+      "socials": {
+        "dribbble": "https://dribbble.com/katya",
+        "telegram": "https://t.me/katya_ui"
+      },
+      "roles": ["Designer"],
+      "skills": [
+        { "name": "Figma", "level": 95, "color": "#a259ff" },
+        { "name": "Adobe XD", "level": 70, "color": "#ff61f6" }
+      ],
+      "portfolio": [
+        "https://via.placeholder.com/300x200?text=UI+макет+1",
+        "https://via.placeholder.com/300x200?text=UX+Flow"
+      ]
+    }
+  ]
+}
