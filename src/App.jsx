@@ -5,9 +5,10 @@ function App() {
       <div>
         <h2>Наша команда</h2>
         <div></div>
+        <div></div>
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
