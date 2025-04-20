@@ -7,5 +7,5 @@ export const updateUserFromFavorites = (id, value) => {
     body: JSON.stringify({
       isFavorite: value,
     }),
-  });
-};
+  })
+}

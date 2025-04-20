@@ -44,7 +44,7 @@ const FavoritesContainer = ({ className }) => {
               photo={photo}
               roles={roles}
               about={about}
-              removeUser={() => removeUser(store, id)}
+              removeUser={() => updateUser(store, id)}
             />
           )
         )

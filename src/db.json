@@ -153,7 +153,8 @@
       "portfolio": [
         "https://via.placeholder.com/300x200?text=UI+макет+1",
         "https://via.placeholder.com/300x200?text=UX+Flow"
-      ]
+      ],
+      "isFavorite": true
     },
     {
       "id": 5,
@@ -191,7 +192,8 @@
       "portfolio": [
         "https://via.placeholder.com/300x200?text=UI+макет+1",
         "https://via.placeholder.com/300x200?text=UX+Flow"
-      ]
+      ],
+      "isFavorite": true
     }
   ]
 }

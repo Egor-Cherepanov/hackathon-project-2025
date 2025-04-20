@@ -34,10 +34,10 @@ export const FavoriteUserCard = styled(FavoriteUserCardContainer)`
     	height: 130px;
 	}
 
-	& .user-information {
-		width: 70%;
-		height: 128px;
-	}
+  & .user-information {
+    width: 70%;
+    height: 128px;
+  }
 
 	& .name {
 		margin-bottom: 10px;
@@ -45,9 +45,9 @@ export const FavoriteUserCard = styled(FavoriteUserCardContainer)`
     	font-weight: bold;
 	}
 
-	& .roles {
-		margin-bottom: 10px;
-	}
+  & .roles {
+    margin-bottom: 10px;
+  }
 
   .favorite-button {
      top: 125px;
