@@ -40,14 +40,14 @@
     },
     {
       "id": 2,
-      "firstName": "Дмитрий",
-      "lastName": "Петров",
-      "age": 24,
-      "about": "Бэкенд разработчик. Люблю архитектуру и чистый код.",
+      "firstName": "Никита",
+      "lastName": "Пучков",
+      "age": 23,
+      "about": "Web-аналитик. Люблю собирать аналитику с сайтов.",
       "photo": "https://randomuser.me/api/portraits/men/2.jpg",
       "socials": {
-        "github": "https://github.com/dmitry",
-        "telegram": "https://t.me/dmitry_code"
+        "github": "https://github.com/PuchNik",
+        "telegram": "@Puchkov_7"
       },
       "roles": [
         "Backend"

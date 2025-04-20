@@ -13,7 +13,7 @@ const App = () => {
             <Router>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
-                    <Route path="/member/:id" element={<Member/>}/>
+                    <Route path="/member/:personId" element={<Member/>}/>
                     <Route path="/favorites" element={<Favorites/>}/>
                     <Route path="*" element={<h1>404 – Страница не найдена</h1>}/>
                 </Routes>
