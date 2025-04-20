@@ -1,140 +1,120 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import { AppContext } from '../context.js'
-import { useRequestGet } from '../components/UseRequestGet.jsx'
+import React, { useContext } from "react"
+import styled from "styled-components"
+import { AppContext } from "../context.js"
+import { useRequestGet } from "../components/UseRequestGet.jsx"
+import { Card } from "../components/Card.jsx"
 
-// Стили для компонента
-const Container = styled.div`
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-`
-
-const Title = styled.h1`
-  font-size: 32px;
-  color: #333;
-  text-align: center;
-  margin-bottom: 20px;
-`
-
-const TeamIntro = styled.div`
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: #e7f3fe;
-  border-left: 5px solid #2196f3;
-  border-radius: 4px;
-`
-
-const IntroTitle = styled.h2`
-  font-size: 24px;
-  color: #2196f3;
-`
-
-const IntroText = styled.p`
-  font-size: 16px;
-  color: #333;
-`
-
-const ParticipantsBlock = styled.div`
-  margin-top: 20px;
-`
-
-const ParticipantsTitle = styled.h2`
-  font-size: 24px;
-  color: #2196f3;
-  margin-bottom: 10px;
-`
-
-const List = styled.ul`
-  list-style-type: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Две колонки */
-  gap: 20px; /* Промежуток между карточками */
-`
-
-const ListItem = styled.li`
-  padding: 10px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  transition: background-color 0.3s;
-`
-
-const ParticipantImage = styled.img`
-  width: 100%;
-  height: auto;
-  border-radius: 4px 4px 0 0;
-`
-
-const ParticipantInfo = styled.div`
-  padding: 10px;
-`
-
-const ParticipantName = styled.h3`
-  font-size: 20px;
-  color: #333;
-  margin: 0;
-`
-
-const ParticipantRole = styled.p`
-  font-size: 16px;
-  color: #555;
-  margin: 5px 0;
-`
-
-const ParticipantAbout = styled.p`
-  font-size: 14px;
-  color: #777;
-`
-
-const LoadingText = styled.p`
-  font-size: 18px;
-  color: #555;
-  text-align: center; /* Центрируем текст загрузки */
-`
-
-export const Home = () => {
+const HomeContainer = ({ className }) => {
   const { store } = useContext(AppContext)
-
-  // Custom hook - GET
   const { isLoading } = useRequestGet()
 
   return (
-    <Container>
-      <Title>Главная</Title>
-      <TeamIntro>
-        <IntroTitle>О команде</IntroTitle>
-        <IntroText>
+    <div className={className}>
+      <h1 className="title">Главная</h1>
+
+      <div className="team-intro">
+        <h2>О команде</h2>
+        <p>
           Наша команда состоит из талантливых и увлеченных специалистов, каждый
           из которых вносит свой уникальный вклад в общий успех. Мы работаем
           вместе, чтобы создавать инновационные решения и обеспечивать высокий
           уровень качества в каждом проекте.
-        </IntroText>
-      </TeamIntro>
-      <ParticipantsBlock>
-        <ParticipantsTitle>Участники команды</ParticipantsTitle>
+        </p>
+      </div>
+
+      <div className="participants-block">
+        <h2>Участники команды</h2>
         {isLoading ? (
-          <LoadingText>Загрузка участников...</LoadingText>
+          <p className="loading-text">Загрузка участников...</p>
         ) : (
-          <List>
-            {store.map(({ id, firstName, lastName, roles, about, imageUrl }) => (
-              <Link to={`/member/${id}`} key={id}>
-                <ListItem>
-                  <ParticipantImage src={imageUrl} alt={`${firstName} ${lastName}`} />
-                  <ParticipantInfo>
-                    <ParticipantName>{firstName} {lastName}</ParticipantName>
-                    <ParticipantRole>Роль: {roles}</ParticipantRole>
-                    <ParticipantAbout>Описание: {about}</ParticipantAbout>
-                  </ParticipantInfo>
-                </ListItem>
-              </Link>
+          <ul className="participants-list">
+            {store.map((person) => (
+              <li key={person.id}>
+                <Card person={person} />
+              </li>
             ))}
-          </List>
+          </ul>
         )}
-      </ParticipantsBlock>
-    </Container>
+      </div>
+    </div>
   )
 }
+export const Home = styled(HomeContainer)`
+  --primary-color: #2196f3;
+  --secondary-color: #f9f9f9;
+  --text-dark: #333;
+  --text-medium: #555;
+  --text-light: #777;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+
+  /* Центрирование и ширина контейнера */
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+
+  background-color: var(--secondary-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+
+  .title {
+    font-size: 32px;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .team-intro {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #e7f3fe;
+    border-left: 5px solid var(--primary-color);
+    border-radius: 4px;
+
+    h2 {
+      font-size: 24px;
+      color: var(--primary-color);
+      margin-top: 0;
+    }
+
+    p {
+      font-size: 16px;
+      color: var(--text-dark);
+      margin-bottom: 0;
+    }
+  }
+
+  .participants-block {
+    margin-top: 20px;
+
+    h2 {
+      font-size: 24px;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+
+    .loading-text {
+      font-size: 18px;
+      color: var(--text-medium);
+      text-align: center;
+    }
+
+    .participants-list {
+      list-style-type: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+
+      & > li {
+        list-style: none;
+      }
+    }
+  }
+`
