@@ -1,12 +1,12 @@
-import React, { useContext } from "react"
-import styled from "styled-components"
-import { AppContext } from "../context.js"
-import { useRequestGet } from "../components/UseRequestGet.jsx"
-import { Card, Loader } from "../components"
+import React, { useContext } from "react";
+import styled from "styled-components";
+import { AppContext } from "../context.js";
+import { useRequestGet } from "../components/UseRequestGet.jsx";
+import { Card, Loader } from "../components";
 
 const HomeContainer = ({ className }) => {
-  const { store } = useContext(AppContext)
-  const { isLoading } = useRequestGet()
+  const { store } = useContext(AppContext);
+  const { isLoading } = useRequestGet();
 
   return (
     <div className={className}>
@@ -37,84 +37,66 @@ const HomeContainer = ({ className }) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
+
 export const Home = styled(HomeContainer)`
-  --primary-color: #2196f3;
-  --secondary-color: #f9f9f9;
-  --text-dark: #333;
-  --text-medium: #555;
-  --text-light: #777;
-  --border-radius: 8px;
-  --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  --transition: all 0.3s ease;
-
-  /* Центрирование и ширина контейнера */
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
+  margin: 40px auto;
   padding: 20px;
-
-  background-color: var(--secondary-color);
-  border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  background-color: #fdfdfd;
+  border: 2px solid #000;
+  border-radius: 12px;
+  font-family: "Arial", sans-serif;
+  max-width: 1200px;
 
   .title {
     font-size: 32px;
-    color: var(--text-dark);
+
     text-align: center;
     margin-bottom: 20px;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
   }
 
   .team-intro {
     margin-bottom: 20px;
-    padding: 15px;
-    background-color: #e7f3fe;
-    border-left: 5px solid var(--primary-color);
-    border-radius: 4px;
+    padding: 15px 15px 10px 15px;
+    border-bottom: 2px solid black;
 
     h2 {
       font-size: 24px;
-      color: var(--primary-color);
       margin-top: 0;
     }
 
     p {
-      font-size: 16px;
-      color: var(--text-dark);
+      font-size: 20px;
+      color: #333;
       margin-bottom: 0;
     }
   }
 
   .participants-block {
-    margin-top: 20px;
+    margin-top: 40px;
 
     h2 {
       font-size: 24px;
-      color: var(--primary-color);
-      margin-bottom: 10px;
-    }
-
-    .loading-text {
-      font-size: 18px;
-      color: var(--text-medium);
+      margin-bottom: 20px;
       text-align: center;
     }
 
     .participants-list {
-      list-style-type: none;
-      padding: 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      padding: 0 16px;
+      list-style: none;
+      margin: 0 auto;
+      justify-content: space-between;
+      max-width: 1000px;
+    }
 
-      @media (max-width: 768px) {
-        grid-template-columns: 1fr;
-      }
-
-      & > li {
-        list-style: none;
-      }
+    .participants-list li {
+      width: calc(33.33% - 16px);
     }
   }
-`
+`;
