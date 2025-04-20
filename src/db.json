@@ -11,17 +11,33 @@
         "github": "https://github.com/dmitry",
         "telegram": "https://github.com/Egor-Cherepanov"
       },
-      "roles": ["Frontend Team Lead", "Junior Frontend Developer"],
+      "roles": [
+        "Frontend Team Lead",
+        "Junior Frontend Developer"
+      ],
       "did": "Собрал и подготовил проект и базу данных. Помогал по остальным компонентам",
       "skills": [
-        { "name": "HTML", "level": 80, "color": "#3c873a" },
-        { "name": "CSS", "level": 70, "color": "#000" },
-        { "name": "React", "level": 75, "color": "#4db33d" }
+        {
+          "name": "HTML",
+          "level": 80,
+          "color": "#3c873a"
+        },
+        {
+          "name": "CSS",
+          "level": 70,
+          "color": "#000"
+        },
+        {
+          "name": "React",
+          "level": 75,
+          "color": "#4db33d"
+        }
       ],
       "portfolio": [
         "https://via.placeholder.com/300x200?text=API+проект",
         "https://via.placeholder.com/300x200?text=Сервер+Node"
-      ]
+      ],
+      "isFavorite": false
     },
     {
       "id": 2,
@@ -34,7 +50,10 @@
         "github": "https://github.com/ururu42",
         "telegram": "https://t.me/utepusechka"
       },
-      "roles": ["Junior Frontend Developer", "UI Developer / UI Engineer"],
+      "roles": [
+        "Junior Frontend Developer",
+        "UI Developer / UI Engineer"
+      ],
       "did": "Сделала компонент Страница участника",
       "skills": [
         {
@@ -70,12 +89,27 @@
         "github": "https://github.com/PuchNik",
         "telegram": "https://t.me/Puchkov_7"
       },
-      "roles": ["Frontend Tech Lead", "Junior Frontend Developer"],
+      "roles": [
+        "Frontend Tech Lead",
+        "Junior Frontend Developer"
+      ],
       "did": "Сделал BFF и главную страницу",
       "skills": [
-        { "name": "HTML", "level": 85, "color": "#fca034" },
-        { "name": "CSS", "level": 75, "color": "#e67e22" },
-        { "name": "React", "level": 70, "color": "#3498db" }
+        {
+          "name": "HTML",
+          "level": 85,
+          "color": "#fca034"
+        },
+        {
+          "name": "CSS",
+          "level": 75,
+          "color": "#e67e22"
+        },
+        {
+          "name": "React",
+          "level": 70,
+          "color": "#3498db"
+        }
       ],
       "portfolio": [
         "https://via.placeholder.com/300x200?text=API+проект",
@@ -94,17 +128,33 @@
         "github": "https://github.com/EvgeniyaKaz",
         "telegram": "https://t.me/kleeemm"
       },
-      "roles": ["Junior Frontend Developer", "UI Developer / UI Engineer"],
+      "roles": [
+        "Junior Frontend Developer",
+        "UI Developer / UI Engineer"
+      ],
       "did": "Сделала компонент Избранное",
       "skills": [
-        { "name": "HTML", "level": 95, "color": "#a259ff" },
-        { "name": "CSS", "level": 70, "color": "#ff61f6" },
-        { "name": "React", "level": 70, "color": "#3498db" }
+        {
+          "name": "HTML",
+          "level": 95,
+          "color": "#a259ff"
+        },
+        {
+          "name": "CSS",
+          "level": 70,
+          "color": "#ff61f6"
+        },
+        {
+          "name": "React",
+          "level": 70,
+          "color": "#3498db"
+        }
       ],
       "portfolio": [
         "https://via.placeholder.com/300x200?text=UI+макет+1",
         "https://via.placeholder.com/300x200?text=UX+Flow"
-      ]
+      ],
+      "isFavorite": true
     },
     {
       "id": 5,
@@ -117,17 +167,33 @@
         "github": "https://github.com/Dene1",
         "telegram": "https://t.me/denel11"
       },
-      "roles": ["Junior Frontend Developer", "UI Developer / UI Engineer"],
+      "roles": [
+        "Junior Frontend Developer",
+        "UI Developer / UI Engineer"
+      ],
       "did": "Помогал с остальными вопросами",
       "skills": [
-        { "name": "HTML", "level": 95, "color": "#a259ff" },
-        { "name": "CSS", "level": 70, "color": "#ff61f6" },
-        { "name": "React", "level": 70, "color": "#3498db" }
+        {
+          "name": "HTML",
+          "level": 95,
+          "color": "#a259ff"
+        },
+        {
+          "name": "CSS",
+          "level": 70,
+          "color": "#ff61f6"
+        },
+        {
+          "name": "React",
+          "level": 70,
+          "color": "#3498db"
+        }
       ],
       "portfolio": [
         "https://via.placeholder.com/300x200?text=UI+макет+1",
         "https://via.placeholder.com/300x200?text=UX+Flow"
-      ]
+      ],
+      "isFavorite": true
     }
   ]
 }

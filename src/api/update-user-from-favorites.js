@@ -1,4 +1,4 @@
-export const deleteUserFromFavorites = (id, value) => {
+export const updateUserFromFavorites = (id, value) => {
   fetch(`http://localhost:3000/members/${id}`, {
     method: "PATCH",
     headers: {
@@ -7,5 +7,5 @@ export const deleteUserFromFavorites = (id, value) => {
     body: JSON.stringify({
       isFavorite: value,
     }),
-  });
-};
+  })
+}

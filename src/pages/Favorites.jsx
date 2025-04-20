@@ -2,7 +2,7 @@ import { useContext, useLayoutEffect, useState } from "react"
 import { AppContext } from "../context"
 import { FavoriteUserCard } from "../components/Favorite-user-card"
 import { useRequestGet } from "../components/UseRequestGet"
-import { deleteUserFromFavorites } from "../api/delete-user-from-favorites"
+import { updateUserFromFavorites } from "../api/update-user-from-favorites"
 import styled from "styled-components"
 
 const FavoritesContainer = ({ className }) => {
@@ -18,8 +18,8 @@ const FavoritesContainer = ({ className }) => {
     setUsers(favoriteUsers)
   }, [store])
 
-  const removeUser = (store, userId) => {
-    deleteUserFromFavorites(userId, value)
+  const updateUser = (store, userId) => {
+    updateUserFromFavorites(userId, value)
     const newStore = store.filter(({ id }) => id !== userId)
 
     setStore(newStore)
@@ -43,7 +43,7 @@ const FavoritesContainer = ({ className }) => {
               photo={photo}
               roles={roles}
               about={about}
-              removeUser={() => removeUser(store, id)}
+              removeUser={() => updateUser(store, id)}
             />
           )
         )
