@@ -2,19 +2,40 @@
   "members": [
     {
       "id": 1,
-      "firstName": "Анна",
-      "lastName": "Иванова",
-      "age": 22,
-      "about": "Фронтенд-разработчик. Люблю создавать красивые и удобные интерфейсы.",
-      "photo": "https://randomuser.me/api/portraits/women/1.jpg",
+      "firstName": "Егор",
+      "lastName": "Черепанов",
+      "age": 24,
+      "about": "Фронтенд-инженер. Получаю кайф от анимаций, микроинтеракций и чистого кода.",
+      "photo": "https://randomuser.me/api/portraits/men/2.jpg",
       "socials": {
-        "github": "https://github.com/anna",
-        "telegram": "https://t.me/anna_dev"
+        "github": "https://github.com/dmitry",
+        "telegram": "https://github.com/Egor-Cherepanov"
       },
-      "roles": [
-        "Team Lead",
-        "Frontend"
+      "roles": ["Frontend Team Lead", "Junior Frontend Developer"],
+      "did": "Собрал и подготовил проект и базу данных. Помогал по остальным компонентам",
+      "skills": [
+        { "name": "HTML", "level": 80, "color": "#3c873a" },
+        { "name": "CSS", "level": 70, "color": "#000" },
+        { "name": "React", "level": 75, "color": "#4db33d" }
       ],
+      "portfolio": [
+        "https://via.placeholder.com/300x200?text=API+проект",
+        "https://via.placeholder.com/300x200?text=Сервер+Node"
+      ]
+    },
+    {
+      "id": 2,
+      "firstName": "Екатерина",
+      "lastName": "Мальцева",
+      "age": 33,
+      "about": "Фронтенд-разработчик. Люблю создавать красивые и удобные интерфейсы.",
+      "photo": "https://i.postimg.cc/hPXjSbbt/iam.jpg",
+      "socials": {
+        "github": "https://github.com/ururu42",
+        "telegram": "https://t.me/utepusechka"
+      },
+      "roles": ["Junior Frontend Developer", "UI Developer / UI Engineer"],
+      "did": "Сделала компонент Страница участника",
       "skills": [
         {
           "name": "HTML",
@@ -39,35 +60,22 @@
       "isFavorite": false
     },
     {
-      "id": 2,
+      "id": 3,
       "firstName": "Никита",
       "lastName": "Пучков",
       "age": 23,
-      "about": "Web-аналитик. Люблю собирать аналитику с сайтов.",
+      "about": "Разрабатываю интерфейсы, которые не просто работают, а радуют глаз и пользователя.",
       "photo": "https://randomuser.me/api/portraits/men/2.jpg",
       "socials": {
         "github": "https://github.com/PuchNik",
-        "telegram": "@Puchkov_7"
+        "telegram": "https://t.me/Puchkov_7"
       },
-      "roles": [
-        "Backend"
-      ],
+      "roles": ["Frontend Tech Lead", "Junior Frontend Developer"],
+      "did": "Сделал BFF и главную страницу",
       "skills": [
-        {
-          "name": "Node.js",
-          "level": 80,
-          "color": "#3c873a"
-        },
-        {
-          "name": "Express",
-          "level": 70,
-          "color": "#000"
-        },
-        {
-          "name": "MongoDB",
-          "level": 75,
-          "color": "#4db33d"
-        }
+        { "name": "HTML", "level": 85, "color": "#fca034" },
+        { "name": "CSS", "level": 75, "color": "#e67e22" },
+        { "name": "React", "level": 70, "color": "#3498db" }
       ],
       "portfolio": [
         "https://via.placeholder.com/300x200?text=API+проект",
@@ -76,36 +84,50 @@
       "isFavorite": true
     },
     {
-      "id": 3,
-      "firstName": "Екатерина",
-      "lastName": "Смирнова",
+      "id": 4,
+      "firstName": "Евгения",
+      "lastName": "Казачок",
       "age": 21,
-      "about": "UI/UX дизайнер. Обожаю продумывать юзерфлоу и делать приятный UI.",
-      "photo": "https://randomuser.me/api/portraits/women/3.jpg",
+      "about": "Специализируюсь на фронтенде. UI/UX для меня — не просто слова, а стиль жизни.",
+      "photo": "https://i.postimg.cc/rwxHwnJq/photo-5197363311442782956-y.jpg",
       "socials": {
-        "dribbble": "https://dribbble.com/katya",
-        "telegram": "https://t.me/katya_ui"
+        "github": "https://github.com/EvgeniyaKaz",
+        "telegram": "https://t.me/kleeemm"
       },
-      "roles": [
-        "Designer"
-      ],
+      "roles": ["Junior Frontend Developer", "UI Developer / UI Engineer"],
+      "did": "Сделала компонент Избранное",
       "skills": [
-        {
-          "name": "Figma",
-          "level": 95,
-          "color": "#a259ff"
-        },
-        {
-          "name": "Adobe XD",
-          "level": 70,
-          "color": "#ff61f6"
-        }
+        { "name": "HTML", "level": 95, "color": "#a259ff" },
+        { "name": "CSS", "level": 70, "color": "#ff61f6" },
+        { "name": "React", "level": 70, "color": "#3498db" }
       ],
       "portfolio": [
         "https://via.placeholder.com/300x200?text=UI+макет+1",
         "https://via.placeholder.com/300x200?text=UX+Flow"
+      ]
+    },
+    {
+      "id": 5,
+      "firstName": "Илья",
+      "lastName": "Чураков",
+      "age": 21,
+      "about": "Фронтенд-разработчик. Превращаю идеи в живые и отзывчивые пользовательские интерфейсы.",
+      "photo": "https://randomuser.me/api/portraits/men/2.jpg",
+      "socials": {
+        "github": "https://github.com/Dene1",
+        "telegram": "https://t.me/denel11"
+      },
+      "roles": ["Junior Frontend Developer", "UI Developer / UI Engineer"],
+      "did": "Помогал с остальными вопросами",
+      "skills": [
+        { "name": "HTML", "level": 95, "color": "#a259ff" },
+        { "name": "CSS", "level": 70, "color": "#ff61f6" },
+        { "name": "React", "level": 70, "color": "#3498db" }
       ],
-      "isFavorite": false
+      "portfolio": [
+        "https://via.placeholder.com/300x200?text=UI+макет+1",
+        "https://via.placeholder.com/300x200?text=UX+Flow"
+      ]
     }
   ]
 }
