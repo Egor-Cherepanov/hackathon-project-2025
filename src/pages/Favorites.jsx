@@ -6,62 +6,72 @@ import { deleteUserFromFavorites } from "../api/delete-user-from-favorites"
 import styled from "styled-components"
 
 const FavoritesContainer = ({ className }) => {
-	const { isLoading } = useRequestGet()
-	const { store, setStore } = useContext(AppContext)
+  const { isLoading } = useRequestGet()
+  const { store, setStore } = useContext(AppContext)
 
-	const [users, setUsers] = useState([])
-	const favoriteUsers = store.filter((user) => user.isFavorite === true);
+  const [users, setUsers] = useState([])
+  const favoriteUsers = store.filter((user) => user.isFavorite === true)
 
-	const value = false
+  const value = false
 
-	useLayoutEffect(() => {
-		setUsers(favoriteUsers)
-	}, [store])
+  useLayoutEffect(() => {
+    setUsers(favoriteUsers)
+  }, [store])
 
+  const removeUser = (store, userId) => {
+    deleteUserFromFavorites(userId, value)
+    const newStore = store.filter(({ id }) => id !== userId)
 
-	const removeUser = (store, userId) => {
-		deleteUserFromFavorites(userId, value)
-		const newStore = store.filter(({ id }) => id !== userId)
+    setStore(newStore)
+  }
 
-		setStore(newStore)
-	}
-
-    return (
-        <div className={className}>
-            <h1 className="header">Избранные</h1>
-			{ isLoading
-			?	<div className="loader"></div>
-			:   users.length === 0
-					? <div className="no-users-found">Пользователи не найдены</div>
-					: favoriteUsers.map(({ id, firstName, lastName, photo, roles, about}) => (
-						<FavoriteUserCard key={id} id={id} firstName={firstName} lastName={lastName} photo={photo} roles={roles} about={about} removeUser={() => removeUser(store, id)} />
-					)
-				)
-			}
-        </div>
-    )
+  return (
+    <div className={className}>
+      <h1 className="header">Избранные</h1>
+      {isLoading ? (
+        <div className="loader"></div>
+      ) : users.length === 0 ? (
+        <div className="no-users-found">Пользователи не найдены</div>
+      ) : (
+        favoriteUsers.map(
+          ({ id, firstName, lastName, photo, roles, about }) => (
+            <FavoriteUserCard
+              key={id}
+              id={id}
+              firstName={firstName}
+              lastName={lastName}
+              photo={photo}
+              roles={roles}
+              about={about}
+              removeUser={() => removeUser(store, id)}
+            />
+          )
+        )
+      )}
+    </div>
+  )
 }
 
 export const Favorites = styled(FavoritesContainer)`
-	display: flex;
-    flex-direction: column;
-	align-items: center;
-	border: 1px solid black;
-    border-radius: 5px;
-    width: 1000px;
-	min-height: 200px;
-	margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 1000px;
+  min-height: 200px;
+  margin: 20px auto;
 
-	& h1 {
-		margin: 15px 0 20px 0;
-		width: 970px;;
-    	display: flex;
-		justify-content: center;
-		border-bottom: 1px solid black;
-		padding: 0 0 10px 0;
-	}
+  & h1 {
+    margin: 15px 0 20px 0;
+    width: 970px;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid black;
+    padding: 0 0 10px 0;
+  }
 
-	& .loader {
+  & .loader {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -72,14 +82,14 @@ export const Favorites = styled(FavoritesContainer)`
     border-radius: 50%;
     border-left-color: transparent;
     animation: loader 1s infinite;
-	}
+  }
 
-	@keyframes loader {
-		0% {
-			transform: rotate(0deg);
-		}
-		100% {
-			transform: rotate(360deg);
-		}
-	}
+  @keyframes loader {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 `

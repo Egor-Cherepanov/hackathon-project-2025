@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import styled from "styled-components"
 import { AppContext } from "../context.js"
 import { useRequestGet } from "../components/UseRequestGet.jsx"
-import { Card } from "../components/Card.jsx"
+import { Card, Loader } from "../components"
 
 const HomeContainer = ({ className }) => {
   const { store } = useContext(AppContext)
@@ -25,7 +25,7 @@ const HomeContainer = ({ className }) => {
       <div className="participants-block">
         <h2>Участники команды</h2>
         {isLoading ? (
-          <p className="loading-text">Загрузка участников...</p>
+          <Loader />
         ) : (
           <ul className="participants-list">
             {store.map((person) => (

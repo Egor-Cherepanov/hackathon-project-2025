@@ -1,18 +1,19 @@
-import { useContext } from "react";
-import { AppContext } from "../context.js";
-import { useParams } from "react-router-dom";
-import { AboutMember, MembersRole, Progress } from "../components";
+import { useContext } from "react"
+import { AppContext } from "../context.js"
+import { useParams } from "react-router-dom"
+import { AboutMember, MembersRole, Progress } from "../components"
+import { Error } from "../pages"
 
-import { styled } from "styled-components";
+import { styled } from "styled-components"
 
 const MemberContainer = ({ className }) => {
-  const { store } = useContext(AppContext);
-  const { personId } = useParams();
+  const { store } = useContext(AppContext)
+  const { personId } = useParams()
 
-  const person = store.find((p) => String(p.id) === personId);
+  const person = store.find((p) => String(p.id) === personId)
 
   if (!person) {
-    return <p>Участник не найден</p>;
+    return <Error error="Участник не найден" />
   }
 
   return (
@@ -22,8 +23,8 @@ const MemberContainer = ({ className }) => {
       <MembersRole person={person} />
       <Progress person={person} />
     </div>
-  );
-};
+  )
+}
 
 export const Member = styled(MemberContainer)`
   max-width: 800px;
@@ -40,4 +41,4 @@ export const Member = styled(MemberContainer)`
     padding: 20px 0;
     margin: 0;
   }
-`;
+`
