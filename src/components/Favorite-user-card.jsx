@@ -1,3 +1,4 @@
+import { GoTrash } from "react-icons/go";
 import styled from "styled-components"
 
 const FavoriteUserCardContainer = ({ className, photo, firstName, lastName, roles, about, removeUser }) => {
@@ -10,7 +11,7 @@ const FavoriteUserCardContainer = ({ className, photo, firstName, lastName, role
 				<div className="roles">{userRoles}</div>
 				<div className="about-user">{about}</div>
 			</div>
-			<button onClick={removeUser}>X</button>
+			<GoTrash className="button" onClick={removeUser} />
 		</div>
 	)
 }
@@ -21,7 +22,8 @@ export const FavoriteUserCard = styled(FavoriteUserCardContainer)`
     align-items: center;
 	margin-bottom: 20px;
 	padding: 15px;
-	border: 2px solid black;
+	border: 1px solid black;
+	border-radius: 5px;
 	width: 600px;
 
 	& img {
@@ -42,13 +44,14 @@ export const FavoriteUserCard = styled(FavoriteUserCardContainer)`
 		margin-bottom: 10px;
 	}
 
-	& button {
-		height: 30px;
-    	width: 30px;
+	& .button {
+		height: 20px;
+    	width: 20px;
 		padding: 0;
 
 		&:hover {
 			cursor: pointer;
+			color: red;
 		}
 	}
 `

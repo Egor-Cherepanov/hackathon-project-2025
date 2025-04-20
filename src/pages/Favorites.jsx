@@ -12,13 +12,18 @@ const FavoritesContainer = ({ className }) => {
 	const [users, setUsers] = useState([])
 	const favoriteUsers = store.filter((user) => user.isFavorite === true);
 
+	const value = false
+
 	useLayoutEffect(() => {
 		setUsers(favoriteUsers)
 	}, [store])
 
 
-	const removeUser = (userId) => {
-		deleteUserFromFavorites(userId, setStore)
+	const removeUser = (store, userId) => {
+		deleteUserFromFavorites(userId, value)
+		const newStore = store.filter(({ id }) => id !== userId)
+
+		setStore(newStore)
 	}
 
     return (
@@ -29,7 +34,7 @@ const FavoritesContainer = ({ className }) => {
 			:   users.length === 0
 					? <div className="no-users-found">Пользователи не найдены</div>
 					: favoriteUsers.map(({ id, firstName, lastName, photo, roles, about}) => (
-						<FavoriteUserCard key={id} id={id} firstName={firstName} lastName={lastName} photo={photo} roles={roles} about={about} removeUser={() => removeUser(id, setStore)} />
+						<FavoriteUserCard key={id} id={id} firstName={firstName} lastName={lastName} photo={photo} roles={roles} about={about} removeUser={() => removeUser(store, id)} />
 					)
 				)
 			}
@@ -41,9 +46,19 @@ export const Favorites = styled(FavoritesContainer)`
 	display: flex;
     flex-direction: column;
 	align-items: center;
+	border: 1px solid black;
+    border-radius: 5px;
+    width: 1000px;
+	min-height: 200px;
+	margin: 20px auto;
 
 	& h1 {
-		margin: 15px;
+		margin: 15px 0 20px 0;
+		width: 970px;;
+    	display: flex;
+		justify-content: center;
+		border-bottom: 1px solid black;
+		padding: 0 0 10px 0;
 	}
 
 	& .loader {
