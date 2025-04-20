@@ -1,21 +1,24 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md"
 import { updateUserFromFavorites } from "../api/update-user-from-favorites"
-import styled from "styled-components";
+import styled from "styled-components"
+import { useRequestGet } from "../components/UseRequestGet"
 
 const CardContainer = ({ className, person }) => {
   const [isFavorite, setIsFavorite] = useState(person.isFavorite)
+  const { refresh } = useRequestGet()
 
   const onFavButtonClick = async (e, userId) => {
     e.preventDefault()
     e.stopPropagation()
 
     const previousState = isFavorite
-    setIsFavorite(!previousState)
 
     try {
-      await updateUserFromFavorites(userId, !previousState)
+      const updatedUser = await updateUserFromFavorites(userId, !previousState)
+      setIsFavorite(updatedUser.isFavorite)
+      refresh()
     } catch (error) {
       setIsFavorite(previousState)
       console.error("Ошибка при обновлении избранного:", error)
@@ -54,8 +57,8 @@ const CardContainer = ({ className, person }) => {
         </button>
       </div>
     </Link>
-  );
-};
+  )
+}
 
 export const Card = styled(CardContainer)`
   --primary-color: #2196f3;
@@ -182,4 +185,4 @@ export const Card = styled(CardContainer)`
       transform: scale(1);
     }
   }
-`;
+`

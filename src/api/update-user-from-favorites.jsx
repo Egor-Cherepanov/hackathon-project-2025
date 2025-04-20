@@ -1,5 +1,5 @@
 export const updateUserFromFavorites = (id, value) => {
-  fetch(`http://localhost:3000/members/${id}`, {
+  return fetch(`http://localhost:3000/members/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -7,5 +7,5 @@ export const updateUserFromFavorites = (id, value) => {
     body: JSON.stringify({
       isFavorite: value,
     }),
-  })
+  }).then((res) => res.json())
 }

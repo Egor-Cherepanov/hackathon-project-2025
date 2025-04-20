@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import { useContext } from "react"
 import { AppContext } from "../context.js"
 import { getMembers } from "../api"
@@ -8,7 +8,7 @@ export const useRequestGet = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  const fetchMembers = async () => {
+  const fetchMembers = useCallback(async () => {
     setIsLoading(true)
     setError(null)
     try {
@@ -16,20 +16,20 @@ export const useRequestGet = () => {
       setStore(data)
     } catch (err) {
       setError(err.message)
+      console.error("Failed to fetch members:", err)
     } finally {
       setIsLoading(false)
     }
-  }
+  }, [setStore])
 
   useEffect(() => {
-    if (store.length === 0) {
-      fetchMembers()
-    }
-  }, [store.length, setStore])
+    fetchMembers()
+  }, [fetchMembers])
 
   return {
     isLoading,
     error,
     refresh: fetchMembers,
+    store,
   }
 }

@@ -1,53 +1,62 @@
-import { useContext, useLayoutEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { AppContext } from "../context"
 import { FavoriteUserCard } from "../components/Favorite-user-card"
-import { useRequestGet } from "../components/UseRequestGet"
 import { updateUserFromFavorites } from "../api/update-user-from-favorites"
 import { Loader } from "../components/loader/loader"
 import styled from "styled-components"
+import { Link } from "react-router-dom"
+import { MdArrowBack } from "react-icons/md"
+import { useRequestGet } from "../components"
 
 const FavoritesContainer = ({ className }) => {
-  const { isLoading } = useRequestGet()
-  const { store, setStore } = useContext(AppContext)
+  const { store } = useContext(AppContext)
+  const { refresh } = useRequestGet()
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
 
-  const [users, setUsers] = useState([])
   const favoriteUsers = store.filter((user) => user.isFavorite === true)
 
-  const value = false
+  const onFavButtonClick = async (userId) => {
+    setIsLoading(true)
+    setError(null)
 
-  useLayoutEffect(() => {
-    setUsers(favoriteUsers)
-  }, [store])
-
-  const removeUser = (store, userId) => {
-    updateUserFromFavorites(userId, value)
-    const newStore = store.filter(({ id }) => id !== userId)
-
-    setStore(newStore)
+    try {
+      await updateUserFromFavorites(userId, false)
+      await refresh()
+    } catch (err) {
+      setError("Не удалось обновить избранное")
+      console.error("Ошибка при обновлении избранного:", err)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
     <div className={className}>
-      <h1 className="header">Избранные</h1>
+      <div className="header-wrapper">
+        <Link to="/" className="back-link">
+          <MdArrowBack className="back-icon" />
+          На главную
+        </Link>
+        <h1 className="header">Избранные</h1>
+      </div>
+
+      {error && <div className="error-message">{error}</div>}
+
       {isLoading ? (
         <Loader />
-      ) : users.length === 0 ? (
-        <div className="no-users-found">Пользователи не найдены</div>
+      ) : favoriteUsers.length === 0 ? (
+        <div className="no-users-found">Нет избранных пользователей</div>
       ) : (
-        favoriteUsers.map(
-          ({ id, firstName, lastName, photo, roles, about }) => (
+        <div className="users-list">
+          {favoriteUsers.map((user) => (
             <FavoriteUserCard
-              key={id}
-              id={id}
-              firstName={firstName}
-              lastName={lastName}
-              photo={photo}
-              roles={roles}
-              about={about}
-              removeUser={() => updateUser(store, id)}
+              key={user.id}
+              {...user}
+              updateUser={() => onFavButtonClick(user.id)}
             />
-          )
-        )
+          ))}
+        </div>
       )}
     </div>
   )
@@ -62,13 +71,70 @@ export const Favorites = styled(FavoritesContainer)`
   max-width: 800px;
   min-height: 200px;
   margin: 40px auto;
+  padding: 20px;
+  background-color: #fdfdfd;
+  font-family: "Arial", sans-serif;
 
-  & h1 {
-    margin: 15px 0 20px 0;
-    width: 779px;
-    display: flex;
-    justify-content: center;
+  .header-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
     border-bottom: 2px solid black;
-    padding: 0 0 10px 0;
+    padding-bottom: 10px;
+  }
+
+  .header {
+    font-size: 32px;
+    margin: 0;
+    text-align: center;
+  }
+
+  .back-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 8px 16px;
+    background-color: #2196f3;
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    z-index: 10;
+    margin-top: -6px;
+
+    &:hover {
+      background-color: #0d8bf2;
+      transform: translateY(-50%) scale(1.05);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .back-icon {
+    font-size: 20px;
+  }
+
+  .no-users-found {
+    font-size: 20px;
+    color: #333;
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    padding: 15px;
+
+    .header {
+      font-size: 28px;
+    }
+
+    .back-link {
+      padding: 6px 12px;
+      font-size: 14px;
+    }
   }
 `

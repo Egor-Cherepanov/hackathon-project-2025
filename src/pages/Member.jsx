@@ -1,54 +1,3 @@
-// import { useContext } from "react"
-// import { AppContext } from "../context.js"
-// import { useParams } from "react-router-dom"
-// import {
-//   AboutMember,
-//   MembersRole,
-//   Progress,
-//   useRequestGet,
-// } from "../components"
-// import { Error } from "../pages"
-
-// import { styled } from "styled-components"
-
-// const MemberContainer = ({ className }) => {
-//   const { isLoading } = useRequestGet()
-//   const { store } = useContext(AppContext)
-//   const { personId } = useParams()
-
-//   const person = store.find((p) => String(p.id) === personId)
-
-//   if (!person) {
-//     return <Error error="Участник не найден" />
-//   }
-
-//   return (
-//     <div className={className}>
-//       <h1 className="header">Страница участника</h1>
-//       <AboutMember person={person} />
-//       <MembersRole person={person} />
-//       <Progress person={person} />
-//     </div>
-//   )
-// }
-
-// export const Member = styled(MemberContainer)`
-//   max-width: 800px;
-//   margin: 40px auto;
-//   padding: 20px;
-//   background-color: #fdfdfd;
-//   border: 2px solid #000;
-//   border-radius: 12px;
-//   font-family: "Arial", sans-serif;
-
-//   & h1 {
-//     text-align: center;
-//     border-bottom: 2px solid black;
-//     padding: 20px 0;
-//     margin: 0;
-//   }
-// `
-
 import { useState, useEffect, useContext } from "react"
 import { AppContext } from "../context.js"
 import { useParams } from "react-router-dom"
@@ -56,6 +5,8 @@ import { AboutMember, MembersRole, Progress, Loader } from "../components"
 import { Error } from "../pages"
 import { styled } from "styled-components"
 import { getMemberById } from "../api"
+import { Link } from "react-router-dom"
+import { MdArrowBack } from "react-icons/md"
 
 const MemberContainer = ({ className }) => {
   const { store } = useContext(AppContext)
@@ -101,7 +52,13 @@ const MemberContainer = ({ className }) => {
 
   return (
     <div className={className}>
-      <h1 className="header">Страница участника</h1>
+      <div className="header-wrapper">
+        <Link to="/" className="back-link">
+          <MdArrowBack className="back-icon" />
+          На главную
+        </Link>
+        <h1 className="header">Страница участника</h1>
+      </div>
       <AboutMember person={person} />
       <MembersRole person={person} />
       <Progress person={person} />
@@ -118,10 +75,42 @@ export const Member = styled(MemberContainer)`
   border-radius: 12px;
   font-family: "Arial", sans-serif;
 
-  & h1 {
-    text-align: center;
+  .header-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
     border-bottom: 2px solid black;
-    padding: 20px 0;
+    padding-bottom: 10px;
+  }
+
+  .header {
+    font-size: 32px;
     margin: 0;
+    text-align: center;
+  }
+
+  .back-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 8px 16px;
+    background-color: #2196f3;
+    color: white;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    z-index: 10;
+    margin-top: -4px;
+
+    &:hover {
+      background-color: #0d8bf2;
+      transform: translateY(-50%) scale(1.05);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
   }
 `
