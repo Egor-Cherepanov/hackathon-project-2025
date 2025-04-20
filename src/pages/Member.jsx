@@ -20,7 +20,7 @@ const MemberContainer = ({ className }) => {
       <h1 className="header">Страница участника</h1>
       <AboutMember person={person} />
       <MembersRole person={person} />
-      <Progress person={person} type="bar" />
+      <Progress person={person} />
     </div>
   );
 };

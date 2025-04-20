@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { Button } from "./Button/Button";
 import { styled } from "styled-components";
 
 const Fill = styled.div`
@@ -30,29 +32,36 @@ const CircleProgress = styled.div`
   }
 `;
 
-const ProgressContainer = ({ className, person, type = "bar" }) => (
-  <div className={className}>
-    <h3>Навыки участника</h3>
-    <div className="skills">
-      {person.skills.map((skill, index) => (
-        <div className="skill" key={index}>
-          <div className="label">
-            <span className="name">{skill.name}</span>
-            <span className="percent">{skill.level}%</span>
-          </div>
+const ProgressContainer = ({ className, person }) => {
+  const [isBarOrCircle, setIsBarOrCircle] = useState(false);
 
-          {type === "bar" ? (
-            <div className="bar">
-              <Fill level={skill.level} color={skill.color} />
+  return (
+    <div className={className}>
+      <h3>Навыки участника</h3>
+      <div className="skills">
+        {person.skills.map((skill, index) => (
+          <div className="skill" key={index}>
+            <div className="label">
+              <span className="name">{skill.name}</span>
+              <span className="percent">{skill.level}%</span>
             </div>
-          ) : (
-            <CircleProgress level={skill.level} color={skill.color} />
-          )}
-        </div>
-      ))}
+
+            {isBarOrCircle === false ? (
+              <div className="bar">
+                <Fill level={skill.level} color={skill.color} />
+              </div>
+            ) : (
+              <CircleProgress level={skill.level} color={skill.color} />
+            )}
+          </div>
+        ))}
+        <Button onClick={() => setIsBarOrCircle(!isBarOrCircle)}>
+          Сменить отображение графика
+        </Button>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export const Progress = styled(ProgressContainer)`
   max-width: 800px;
