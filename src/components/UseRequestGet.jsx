@@ -1,25 +1,35 @@
-import { useEffect, useState } from 'react'
-import { useContext } from 'react'
-import { AppContext } from '../context.js'
+import { useEffect, useState } from "react"
+import { useContext } from "react"
+import { AppContext } from "../context.js"
+import { getMembers } from "../api"
 
-
-// Custom hook - получение заметок
 export const useRequestGet = () => {
-    const { setStore } = useContext(AppContext)
-    const [isLoading, setIsLoading] = useState(false)
+  const { store, setStore } = useContext(AppContext)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState(null)
 
-    useEffect(() => {
-        setIsLoading(true)
-        fetch('http://localhost:3000/members')
-            .then((loadedData) => loadedData.json())
-            .then((noteData) => setStore(noteData))
-
-            .finally(() => {
-                setIsLoading(false)
-            })
-    }, [setStore])
-
-    return {
-        isLoading,
+  const fetchMembers = async () => {
+    setIsLoading(true)
+    setError(null)
+    try {
+      const data = await getMembers()
+      setStore(data)
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setIsLoading(false)
     }
+  }
+
+  useEffect(() => {
+    if (store.length === 0) {
+      fetchMembers()
+    }
+  }, [store.length, setStore])
+
+  return {
+    isLoading,
+    error,
+    refresh: fetchMembers,
+  }
 }

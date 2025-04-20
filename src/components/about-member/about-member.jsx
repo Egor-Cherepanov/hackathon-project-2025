@@ -1,10 +1,47 @@
+import { useState } from "react";
+import { MdFavorite } from "react-icons/md";
+import { MdFavoriteBorder } from "react-icons/md";
 import { SocialMedia } from "./social-media/social-media";
+import { updateUserFromFavorites } from '../../api/update-user-from-favorites'
 import { styled } from "styled-components";
 
-const AboutMemberContainer = ({ className, person }) => (
-  <div className={className}>
-    <div className="profile">
-      <img src={person.photo} alt={`${person.firstName} ${person.lastName}`} />
+const AboutMemberContainer = ({ className, person }) => {
+	const [isFavorite, setIsFavorite] = useState(person.isFavorite)
+
+	const onFavButtonClick = async (e, userId) => {
+		e.preventDefault()
+		e.stopPropagation()
+
+		const previousState = isFavorite
+		setIsFavorite(!previousState)
+
+		try {
+		  await updateUserFromFavorites(userId, !previousState)
+		} catch (error) {
+		  setIsFavorite(previousState)
+		  console.error("Ошибка при обновлении избранного:", error)
+		}
+	  }
+
+	return (
+		<div className={className}>
+			<div className="profile">
+				<div className="image-and-icon">
+					<button
+						className={`favorite-button ${isFavorite ? "active" : ""}`}
+						onClick={(e) => onFavButtonClick(e, person.id)}
+						aria-label={
+							isFavorite ? "Удалить из избранного" : "Добавить в избранное"
+						}
+						>
+						{isFavorite ? (
+							<MdFavorite className="favorite-icon" />
+						) : (
+							<MdFavoriteBorder className="favorite-icon" />
+						)}
+					</button>
+					<img src={person.photo} alt={`${person.firstName} ${person.lastName}`} />
+				</div>
       <div className="info">
         <h2>
           {person.firstName} {person.lastName}
@@ -17,7 +54,9 @@ const AboutMemberContainer = ({ className, person }) => (
       </div>
     </div>
   </div>
-);
+
+	)
+};
 
 export const AboutMember = styled(AboutMemberContainer)`
   margin: 40px auto;
@@ -34,6 +73,13 @@ export const AboutMember = styled(AboutMemberContainer)`
     align-items: flex-start;
     border-bottom: 1px solid #000;
     padding-bottom: 20px;
+  }
+
+  .image-and-icon {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
   .profile img {
@@ -68,4 +114,56 @@ export const AboutMember = styled(AboutMemberContainer)`
   .info-about {
     margin-top: 12px;
   }
+
+  .favorite-button {
+     position: absolute;
+     top: 209px;
+	 margin-right: 9px;
+     background: rgba(255, 255, 255, 0.8);
+     border: none;
+     border-radius: 50%;
+     width: 32px;
+     height: 32px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     transition: all 0.2s ease;
+     z-index: 1;
+
+     &:hover {
+       background: rgba(255, 255, 255, 0.9);
+       transform: scale(1.1);
+     }
+
+     .favorite-icon {
+       width: 32px;
+       height: 32px;
+     }
+
+     &.active {
+       .favorite-icon {
+         color: #ff4081;
+         animation: heartBeat 0.5s;
+       }
+     }
+   }
+
+   @keyframes heartBeat {
+     0% {
+       transform: scale(1);
+     }
+     25% {
+       transform: scale(1.2);
+     }
+     50% {
+       transform: scale(1);
+     }
+     75% {
+       transform: scale(1.2);
+     }
+     100% {
+       transform: scale(1);
+     }
+   }
 `;

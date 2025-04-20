@@ -2,7 +2,8 @@ import { useContext, useLayoutEffect, useState } from "react"
 import { AppContext } from "../context"
 import { FavoriteUserCard } from "../components/Favorite-user-card"
 import { useRequestGet } from "../components/UseRequestGet"
-import { deleteUserFromFavorites } from "../api/delete-user-from-favorites"
+import { updateUserFromFavorites } from "../api/update-user-from-favorites"
+import { Loader } from "../components/loader/loader"
 import styled from "styled-components"
 
 const FavoritesContainer = ({ className }) => {
@@ -19,7 +20,7 @@ const FavoritesContainer = ({ className }) => {
   }, [store])
 
   const removeUser = (store, userId) => {
-    deleteUserFromFavorites(userId, value)
+    updateUserFromFavorites(userId, value)
     const newStore = store.filter(({ id }) => id !== userId)
 
     setStore(newStore)
@@ -29,7 +30,7 @@ const FavoritesContainer = ({ className }) => {
     <div className={className}>
       <h1 className="header">Избранные</h1>
       {isLoading ? (
-        <div className="loader"></div>
+        <Loader />
       ) : users.length === 0 ? (
         <div className="no-users-found">Пользователи не найдены</div>
       ) : (
@@ -43,7 +44,7 @@ const FavoritesContainer = ({ className }) => {
               photo={photo}
               roles={roles}
               about={about}
-              removeUser={() => removeUser(store, id)}
+              removeUser={() => updateUser(store, id)}
             />
           )
         )
@@ -56,40 +57,18 @@ export const Favorites = styled(FavoritesContainer)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid black;
-  border-radius: 5px;
-  width: 1000px;
+  border: 2px solid black;
+  border-radius: 12px;
+  max-width: 800px;
   min-height: 200px;
-  margin: 20px auto;
+  margin: 40px auto;
 
   & h1 {
     margin: 15px 0 20px 0;
-    width: 970px;
+    width: 779px;
     display: flex;
     justify-content: center;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid black;
     padding: 0 0 10px 0;
-  }
-
-  & .loader {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 25px;
-    height: 25px;
-    border: 5px solid rgb(59, 53, 23);
-    border-radius: 50%;
-    border-left-color: transparent;
-    animation: loader 1s infinite;
-  }
-
-  @keyframes loader {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
   }
 `
